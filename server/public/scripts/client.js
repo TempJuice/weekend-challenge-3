@@ -5,11 +5,13 @@ $(document).ready(function () {
         console.log('button\'s workin');
         // get user task from input box
         var taskName = $('#taskIn').val();
+        console.log(taskName);
         
         var taskToSend = {
             task: taskName,
             done: 'N'
         };
+        
         // call saveTask with the new obejct
         saveTask(taskToSend);
     }); //end addButton event listener
@@ -17,6 +19,8 @@ $(document).ready(function () {
 
 function saveTask(newTask) {
     // ajax call to server to get newTask
+    console.log(newTask);
+    
     $.ajax({
       url: '/tasks',
       type: 'POST',
@@ -35,7 +39,23 @@ function saveTask(newTask) {
       type: 'GET',
       success: function (data) {
         console.log('tasks r here: ', data);
+        showTasks(data);
       } // end success
     }); //end ajax
     
   } // end getTasks
+
+  function showTasks(tasksArray) {
+    //$('#showTasks').empty();
+    for (var i = 0; i < tasksArray.length; i++) {
+      var tasks = tasksArray[i];
+  
+      var taskDisplay = $('<tr></tr>');
+      taskDisplay.data('id', tasks.id);
+      $('#showTasks').append(taskDisplay);
+  
+      var taskName = $('<td>' + tasks.task + '</td>');
+
+      $(taskDisplay).append(taskName);
+    }//end of for loop
+  };// end showTasks function 
