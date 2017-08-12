@@ -20,13 +20,13 @@ router.post('/', function (req, res) {
                     } else {
                         res.sendStatus(200);
                     }
-                });
-            }
-     });
-});
+                });//end client.query
+            }//end pool.connect else statement
+     });//end pool.connect function
+});//end router.post
 
 router.get('/', function (req, res) {
-    console.log('router get was hit');
+    console.log('get route was hit');
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('Error connecting to database', errorConnectingToDatabase);
@@ -41,9 +41,32 @@ router.get('/', function (req, res) {
                     res.send(result.rows);
                     //console.log(result.rows);
                 }
-            });
-        }
-    });
-});
+            });//end client.query
+        }//end pool.connect else statement
+ });//end pool.connect function
+});//end router.get
+
+router.delete('/:id', function (req, res) {
+    var taskId = req.params.id;
+    console.log('delete route was hit');
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error connecting to database:', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query('DELETE FROM tasks WHERE id = $1;',
+            [taskId],
+                function (errorMakingQuery, results) {
+                    done();
+                    if (errorMakingQuery) {
+                        console.log('error making query:', errorMakingQuery)
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });//end client.query
+            }//end pool.connect else statement
+     });//end pool.connect function
+});//end router.delete
 
 module.exports = router;
