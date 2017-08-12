@@ -4,14 +4,13 @@ var pool = require('../modules/pool');
 
 
 router.post('/', function (req, res) {
-    console.log('post route was hit');
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error connecting to database:', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
             client.query('INSERT INTO tasks (task, done) VALUES ($1, $2);',
-            [req.body.task, req.body.done],
+                [req.body.task, req.body.done],
                 function (errorMakingQuery, results) {
                     done();
                     if (errorMakingQuery) {
@@ -21,12 +20,11 @@ router.post('/', function (req, res) {
                         res.sendStatus(200);
                     }
                 });//end client.query
-            }//end pool.connect else statement
-     });//end pool.connect function
+        }//end pool.connect else statement
+    });//end pool.connect function
 });//end router.post
 
 router.get('/', function (req, res) {
-    console.log('get route was hit');
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('Error connecting to database', errorConnectingToDatabase);
@@ -43,19 +41,17 @@ router.get('/', function (req, res) {
                 }
             });//end client.query
         }//end pool.connect else statement
- });//end pool.connect function
+    });//end pool.connect function
 });//end router.get
 
 router.delete('/:id', function (req, res) {
-    var taskId = req.params.id;
-    console.log('delete route was hit');
     pool.connect(function (errorConnectingToDatabase, client, done) {
         if (errorConnectingToDatabase) {
             console.log('error connecting to database:', errorConnectingToDatabase);
             res.sendStatus(500);
         } else {
             client.query('DELETE FROM tasks WHERE id = $1;',
-            [taskId],
+                [req.params.id],
                 function (errorMakingQuery, results) {
                     done();
                     if (errorMakingQuery) {
@@ -65,8 +61,28 @@ router.delete('/:id', function (req, res) {
                         res.sendStatus(200);
                     }
                 });//end client.query
-            }//end pool.connect else statement
-     });//end pool.connect function
+        }//end pool.connect else statement
+    });//end pool.connect function
 });//end router.delete
+
+router.put('/:id', function (req, res) {
+    pool.connect(function (errorConnectingToDatabase, client, done) {
+        if (errorConnectingToDatabase) {
+            console.log('error connecting to database:', errorConnectingToDatabase);
+            res.sendStatus(500);
+        } else {
+            client.query("UPDATE tasks SET done = 'Y' WHERE id = $1;",
+                [req.params.id],
+                function (errorMakingQuery, result) {
+                    if (errorMakingQuery) {
+                        console.log('Error making query:', errorMakingQuery);
+                        res.sendStatus(500);
+                    } else {
+                        res.sendStatus(200);
+                    }
+                });//end client.query
+        }//end pool.connect else statement
+    });//end pool.connect function
+});//end router.put
 
 module.exports = router;
