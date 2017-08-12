@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+    
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TempJuice/weekend-challenge-3.git"
+    
   },
   "author": "",
   "license": "ISC",
