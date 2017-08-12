@@ -1,17 +1,14 @@
 {
   "name": "weekend-project-3",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js"
-    
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TempJuice/weekend-challenge-3.git"
-    
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +20,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "pg": "^7.1.0"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
