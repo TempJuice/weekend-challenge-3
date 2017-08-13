@@ -1,0 +1,7 @@
+.completedTask {
+    background-color: #31BA39;
+    text-decoration: line-through;
+}
+.task {
+    background-color: #5aa0dd;
+}

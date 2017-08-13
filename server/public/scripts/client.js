@@ -11,19 +11,14 @@ $(document).ready(function () {
   }); //end addButton event listener
 
   $('#showTasks').on('click', '.completeButton', function () {
-    console.log('Complete button was clicked...');
     var taskId = $(this).parent().parent().data().id;
-    var taskDone = $(this).parent().parent().data().done;
     $.ajax({
       method: 'PUT',
       url: '/tasks/' + taskId,
-      success: function (response) { 
+      success: function (response) {
         getTasks();
       }
     })//end ajax PUT
-    if (taskDone == 'Y') {
-      $('this td').css('background-color', 'black');
-    }
   });//end completeButton event listener
 
   $('#showTasks').on('click', '.deleteButton', function () {
@@ -64,10 +59,13 @@ function showTasks(tasksArray) {
   for (var i = 0; i < tasksArray.length; i++) {
     var tasks = tasksArray[i];
     var taskDisplay = $('<tr></tr>');
+    if (tasks.done == "Y") {
+      var taskName = $('<td class="completedTask">' + tasks.task + '<button class="deleteButton">Delete</button></td>');
+    } else {
+      taskName = $('<td class="task">' + tasks.task + '<button class="completeButton">Complete</button>' + '<button class="deleteButton">Delete</button></td>');
+    }
     taskDisplay.data('id', tasks.id);
-    taskDisplay.data('done', tasks.done);
     $('#showTasks').append(taskDisplay);
-    var taskName = $('<td class="task">' + tasks.task + '<button class="completeButton">Complete</button>' + '<button class="deleteButton">Delete</button></td>');
     $(taskDisplay).append(taskName);
   }//end for loop
 };// end showTasks() 
