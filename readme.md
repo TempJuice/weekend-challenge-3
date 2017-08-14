@@ -8,13 +8,13 @@
 - [x] Whether or not a task is complete should also be stored in the database.
 - [x] Deleting a task should remove it both from the Front End as well as the Database.
 
-- [ ] Make sure that you also show us your best styling chops.
+- [x] Make sure that you also show us your best styling chops.
 
 - [x] Additionally, please include some way to recreate your initial database schema. This can be a .sql file with CREATE TABLE statements or you can create your schema automatically when your app loads.
 
 # HARD MODE
 
-- [ ] In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task. Once again, you can interrupt this however you would like.
+- [x] In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task. Once again, you can interrupt this however you would like.
 
 # PRO MODE
 

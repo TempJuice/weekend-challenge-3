@@ -11,6 +11,7 @@ $(document).ready(function () {
       done: 'N'
     };
     saveTask(taskToSend);
+    $('#taskIn').val('');
   }); //end addButton event listener
 
   $('#showTasks').on('click', '.completeButton', function () {
@@ -26,13 +27,20 @@ $(document).ready(function () {
 
   $('#showTasks').on('click', '.deleteButton', function () {
     var taskId = $(this).parent().parent().data().id;
-    $.ajax({
-      method: 'DELETE',
-      url: '/tasks/' + taskId,
-      success: function (response) {
-        getTasks();
-      }
-    })//end ajax DELETE
+    var warning;
+    var warningBox = confirm("Are you sure you wanna git rid a dis?");
+    if (warningBox == true) {
+        warning = alert("Hope Mama knows...");
+        $.ajax({
+          method: 'DELETE',
+          url: '/tasks/' + taskId,
+          success: function (response) {
+            getTasks();
+          }
+        })//end ajax DELETE
+    } else {
+        warning = alert("Yeaaah, best not make Mama mad...");
+    }
   });//end deleteButton event listener
 });// end $(doc).ready
 
