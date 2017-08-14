@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+  //Grab current tasks from DB
+  getTasks();
+
   $('#addButton').on('click', function () {
     var taskName = $('#taskIn').val();
     //Generating new task as an object

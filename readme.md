@@ -10,6 +10,8 @@
 
 - [ ] Make sure that you also show us your best styling chops.
 
+- [x] Additionally, please include some way to recreate your initial database schema. This can be a .sql file with CREATE TABLE statements or you can create your schema automatically when your app loads.
+
 # HARD MODE
 
 - [ ] In whatever fashion you would like, create an 'are you sure: yes / no' option when deleting a task. Once again, you can interrupt this however you would like.

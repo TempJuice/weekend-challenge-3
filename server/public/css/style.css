@@ -1,7 +1,44 @@
+body {
+    background-color: #CBBEBD;
+    text-decoration-color: white;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+#addTask {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+tr {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
 .completedTask {
+    display: flex;
     background-color: #31BA39;
     text-decoration: line-through;
 }
+
 .task {
+    display: flex;
     background-color: #5aa0dd;
 }
+
+
